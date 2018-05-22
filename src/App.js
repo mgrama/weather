@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-//import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { Navbar, NavItem, Nav, Grid, Row, Col } from 'react-bootstrap';
-import 'bootswatch/journal/bootstrap.css'
+//import 'bootswatch/journal/bootstrap.css'
 import './App.css';
 
 const PLACES = [
-  { name: 'Palo Alto', zip: '94303' },
+  { name: 'Seattle', zip: '98101' },
   { name: 'San Jose', zip: '94088' },
   { name: 'Santa Cruz', zip: '95062' },
   { name: 'Honolulu', zip: '96803' }
@@ -77,24 +77,16 @@ class App extends Component {
                     this.setState({ activePlace: index });
                   }}
                   >
-                    {Places}
+                    {PLACES.map((place, index) => (
+                      <NavItem key={index} eventKey={index}>{place.name}</NavItem>
+                    ))}
                   </Nav>
+              </Col>
+              <Col md={8} sm={8}>
+                <WeatherDisplay key={activePlace} zip={PLACES[activePlace].zip} />
               </Col>
             </Row>
           </Grid>
-        </div>
-        <div className='App'>
-          {PLACES.map((place, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                this.setState({ activePlace: index });
-              }}
-            >
-              {place.name}
-            </button>
-          ))}
-          <WeatherDisplay key={activePlace} zip={PLACES[activePlace].zip} />
         </div>
       );
     }
